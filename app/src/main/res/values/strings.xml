@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ExamenFactum</string>
+    <!--Etiquetas para mostrar los fragmentos-->
+    <string name="titulo_movies">Peliculas</string>
+    <string name="titulo_mapa">Ubicación</string>
+    <string name="titulo_imagenes">Imagenes</string>
+</resources>
