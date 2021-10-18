@@ -1,20 +1,24 @@
 
 package com.ejemplos.kotlin.examenfactum.database;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 //entidad con los campos de una pelicula obtenida de la API
+@Entity(tableName = "peliculas")
 public class MovieEntity {
-
+    @PrimaryKey
+    @SerializedName("id")
+    @Expose
+    private int id;
     @SerializedName("adult")
     @Expose
     private boolean adult;
     @SerializedName("backdrop_path")
     @Expose
     private String backdropPath;
-    @SerializedName("id")
-    @Expose
-    private int id;
     @SerializedName("original_language")
     @Expose
     private String originalLanguage;
