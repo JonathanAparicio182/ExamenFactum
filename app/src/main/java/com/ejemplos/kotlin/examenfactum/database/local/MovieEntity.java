@@ -1,5 +1,5 @@
 
-package com.ejemplos.kotlin.examenfactum.database;
+package com.ejemplos.kotlin.examenfactum.database.local;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.ejemplos.kotlin.examenfactum.R;
 import com.ejemplos.kotlin.examenfactum.common.Constantes;
-import com.ejemplos.kotlin.examenfactum.database.MovieEntity;
+import com.ejemplos.kotlin.examenfactum.database.local.MovieEntity;
 
 import java.util.List;
 
