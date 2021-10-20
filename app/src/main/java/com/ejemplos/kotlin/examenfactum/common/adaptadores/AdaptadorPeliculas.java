@@ -18,7 +18,7 @@ import com.ejemplos.kotlin.examenfactum.database.local.MovieEntity;
 import java.util.List;
 
 public class AdaptadorPeliculas extends RecyclerView.Adapter<AdaptadorPeliculas.ViewHolderPeliculas> {
-    private final List<MovieEntity> listaPeliculas;     //lista a desplegar en el RecyclerView
+    private List<MovieEntity> listaPeliculas;           //lista a desplegar en el RecyclerView
     private Context contexto;                           //variable con el contexto del RecyclerView
 
     public AdaptadorPeliculas(List<MovieEntity> listaPeliculas, Context contexto) {
@@ -44,6 +44,11 @@ public class AdaptadorPeliculas extends RecyclerView.Adapter<AdaptadorPeliculas.
         }
         else
             Log.d("Lista Vacía", "La lista de películas esta vacía");
+    }
+    //Método para actualizar la información del adaptador
+    public void setDatos(List<MovieEntity> nuevasPeliculas){
+        this.listaPeliculas = nuevasPeliculas;                  //actualiza la lista del adaptador
+        notifyDataSetChanged();                                 //y la vuelve a dibujar en la vista
     }
     //Método para saber la cantidad de elementos que tiene el adaptador
     @Override

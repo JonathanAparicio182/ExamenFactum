@@ -1,5 +1,7 @@
 package com.ejemplos.kotlin.examenfactum.database;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.room.Room;
@@ -22,6 +24,7 @@ import java.util.List;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MovieRepository {
     private final MovieApiService movieApiService;          //clase con los ENDPOINT para comunicarse con el API
@@ -43,6 +46,8 @@ public class MovieRepository {
         //Remote > Retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl( Constantes.BASE_URL )
+                .addConverterFactory( GsonConverterFactory.create() )
+                .client( cliente )
                 .build();
 
         movieApiService = retrofit.create( MovieApiService.class );
@@ -54,18 +59,21 @@ public class MovieRepository {
             //respalda la información obtenida de la API en la DB local
             @Override
             protected void saveCallResult(@NonNull MoviesResponse item) {
+                //Log.d("MovieRepository","Información de la API almacenada de forma local");
                 movieDao.savePeliculas( item.getResults() );
             }
             //regresa los datos que se tengan en la base de datos local
             @NonNull
             @Override
             protected LiveData<List<MovieEntity>> loadFromDb() {
+                //Log.d("MovieRepository","No hay conexión y regresa la BD Local");
                 return movieDao.loadPeliculas();
             }
             //si se tiene acceso a Internet regresa la información consultada en la API
             @NonNull
             @Override
             protected Call<MoviesResponse> createCall() {
+                //Log.d( "MovieRepository", "Hay internet y regresa la API" );
                 return movieApiService.loadPopularMovies();
             }
         }.getAsLiveData();

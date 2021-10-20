@@ -15,3 +15,7 @@ buildscript {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    archLifecycleVersion = '2.2.0'
+}
