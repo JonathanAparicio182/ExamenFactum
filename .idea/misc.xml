@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/layout/fragment_mapa.xml" value="0.2984375" />
         <entry key="app/src/main/res/layout/fragment_movie.xml" value="0.2984375" />
         <entry key="app/src/main/res/layout/item_movies.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_peliculas.xml" value="0.2984375" />
       </map>
     </option>
   </component>
