@@ -3,6 +3,8 @@
     package="com.ejemplos.kotlin.examenfactum">
     <!--indica que la aplicación utiliza internet para funcionar-->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!--indica que -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:name=".common.MyApp"
@@ -22,5 +24,13 @@
             </intent-filter>
         </activity>
     </application>
+    <!--Incorporación de los servicios de Google play-->
+    <meta-data
+        android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" />
+    <!--Integración de la API KEY de Google maps-->
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="${MAPS_API_KEY}" />
 
 </manifest>

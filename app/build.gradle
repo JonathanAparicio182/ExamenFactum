@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -52,4 +53,6 @@ dependencies {
     //integración de LiveData y ViewModel
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
+    //integración de GoogleMaps al proyecto
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
 }
