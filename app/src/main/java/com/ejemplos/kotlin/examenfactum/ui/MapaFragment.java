@@ -38,8 +38,10 @@ public class MapaFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        final View root = inflater.inflate( R.layout.fragment_mapa, container, false );
 
-        return inflater.inflate( R.layout.fragment_mapa, container, false );
+
+        return root;
     }
 
     @Override
