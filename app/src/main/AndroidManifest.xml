@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ejemplos.kotlin.examenfactum">
-    <!--indica que la aplicación utiliza internet para funcionar-->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <!--indica que -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- indica que la aplicación utiliza internet para funcionar -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Incorporación de los servicios de Google play -->
+    <meta-data
+        android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" /> <!-- Integración de la API KEY de Google maps -->
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="${MAPS_API_KEY}" />
 
     <application
         android:name=".common.MyApp"
@@ -14,6 +26,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExamenFactum">
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <activity
             android:name=".ui.DashboardActivity"
             android:exported="true">
@@ -24,13 +49,5 @@
             </intent-filter>
         </activity>
     </application>
-    <!--Incorporación de los servicios de Google play-->
-    <meta-data
-        android:name="com.google.android.gms.version"
-        android:value="@integer/google_play_services_version" />
-    <!--Integración de la API KEY de Google maps-->
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="${MAPS_API_KEY}" />
 
 </manifest>
