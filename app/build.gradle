@@ -55,4 +55,6 @@ dependencies {
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
     //integración de GoogleMaps al proyecto
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    //integración de Dexter para gestionar permisos
+    implementation 'com.karumi:dexter:6.2.3'
 }

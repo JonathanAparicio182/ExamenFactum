@@ -3,6 +3,8 @@ package com.ejemplos.kotlin.examenfactum.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,13 +12,23 @@ import android.widget.Toast;
 import com.ejemplos.kotlin.examenfactum.R;
 import com.ejemplos.kotlin.examenfactum.common.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.CompositePermissionListener;
+import com.karumi.dexter.listener.single.DialogOnDeniedPermissionListener;
+import com.karumi.dexter.listener.single.PermissionListener;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity implements PermissionListener {
     TabLayout tlDashboard;                  //elemento con las pestañas a mostrar
     ViewPager vpDashboard;                  //elemento padre con los fragmentos a cargar
     ViewPagerAdapter viewPagerAdapter;      //elemento para configurar los fragmentos a visualizar
     private int tiemposeg;
     private int tiempomin;
+    //variables para obtener permisos de ubicación
+    PermissionListener allPermissionsListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +37,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         configView();
         configViewPagerAdapter();
+        checkPermissions();
     }
     //método para configurar los elementos de la vista
     private void configView() {
@@ -69,5 +82,35 @@ public class DashboardActivity extends AppCompatActivity {
         vpDashboard.setAdapter( viewPagerAdapter );
         //relaciona los fragmentos con el tabLayout
         tlDashboard.setupWithViewPager( vpDashboard );
+    }
+    //método para pedir permisos para la ubicación
+    private void checkPermissions(){
+        PermissionListener dialogOnDenniedPermissionListener =
+                DialogOnDeniedPermissionListener.Builder.withContext( getApplicationContext() )
+                .withTitle( "Permisos necesarios" )
+                .withMessage( "Los permisos son necesarios para poder guardar tu ubicación actual." )
+                .withButtonText( "Aceptar" )
+                .build();
+        //muestra la advertencia al usuario
+        allPermissionsListener = new CompositePermissionListener( dialogOnDenniedPermissionListener );
+        //se hace la solicitud de los permisos necesarios
+        Dexter.withContext( getApplicationContext() ).withPermission( Manifest.permission.ACCESS_FINE_LOCATION )
+                .withListener( allPermissionsListener )
+                .check();
+    }
+    //acciones a realizar si se aceptan los permisos
+    @Override
+    public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+
+    }
+    //acciones a realizar si no se aceptan los permisos
+    @Override
+    public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+
+    }
+
+    @Override
+    public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+
     }
 }
