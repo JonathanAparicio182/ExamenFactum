@@ -9,4 +9,6 @@ public class Constantes {
     public static final String API_KEY = "d16ba9334e0f109b181a3e4c1a626b49";
     //variable para solicitar permisos en tiempo de ejecución
     public static final int SOLICITUD_PERMISOS = 1000;
+    //cantidad de minutos para actualizar la ubicación
+    public static final int MINUTOS_ACTUALIZA = 4;
 }

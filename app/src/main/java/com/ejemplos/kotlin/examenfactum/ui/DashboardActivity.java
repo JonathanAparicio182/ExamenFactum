@@ -58,30 +58,32 @@ public class DashboardActivity extends AppCompatActivity {
         new Thread( new Runnable() {
             @Override
             public void run() {
-                for (;;){
+                for (;;){                           //bucle infinito
                     try {
-                        Thread.sleep( 1000 );
+                        Thread.sleep( 1000 );       //espera 1 seg
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     tiemposeg++;
                     Log.d( "DashboardActivity", "Ya pasaron " + tiemposeg + " segundos");
-                    if (tiemposeg%60 == 0)
+                    if (tiemposeg%60 == 0)          //si ya paso 1 minuto
                     {
                         tiemposeg=0;            //reinicia los segundos
                         tiempomin++;            //incrementa los minutos transcurridos
+                        //ejecuta un hilo que permite modificar el UI
                         runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText( getApplicationContext(),"Ya paso " + tiempomin + " minutos",Toast.LENGTH_LONG ).show();
+                                Toast.makeText( getApplicationContext(),"Ya pasaron " + tiempomin + " minutos",Toast.LENGTH_LONG ).show();
                             }
                         } );
+                        //si ya paso un multiplo de los minutos para actualizar
+                        if (tiempomin % Constantes.MINUTOS_ACTUALIZA == 0)
+                            obtenerUbicacion();                     //crea una nueva ubicación
                     }
                 }
             }
         } ).start();
-
-        obtenerUbicacion();
     }
 
     //método para configurar los fragmentos del swipeView
