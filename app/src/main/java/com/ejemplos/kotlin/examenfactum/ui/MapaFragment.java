@@ -68,7 +68,8 @@ public class MapaFragment extends Fragment {
                     }
                     //Toast.makeText( getContext(), "Mapa actualizado", Toast.LENGTH_SHORT ).show();
                     //coloca la cámara en el último marcador colocado con un zoom
-                    mapa.moveCamera( CameraUpdateFactory.newLatLngZoom( coordenadas.get( coordenadas.size()-1 ),15f ) );
+                    if (!realTimeMarkers.isEmpty())                 //solo si hay ubicaciones almacenadas
+                        mapa.moveCamera( CameraUpdateFactory.newLatLngZoom( coordenadas.get( coordenadas.size()-1 ),15f ) );
                 }
 
                 @Override
@@ -76,13 +77,6 @@ public class MapaFragment extends Fragment {
 
                 }
             } );
-//            LatLng sydney = new LatLng( -34, 151 );
-//            mapa.addMarker( new MarkerOptions()
-//                    .position( sydney )
-//                    .title( "Marker in Sydney" )
-//                    //cambia el color del ícono a mostrar
-//                    .icon( BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE) ) );
-//            mapa.moveCamera( CameraUpdateFactory.newLatLng( sydney ) );
         }
     };
 
@@ -90,7 +84,7 @@ public class MapaFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View root = inflater.inflate( R.layout.fragment_mapa, container, false );
-
+        //creación de una instancia de Realtime database
         firebaseDatabase = FirebaseDatabase.getInstance().getReference();
 
         return root;
