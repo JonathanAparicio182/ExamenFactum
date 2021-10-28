@@ -4,4 +4,6 @@
     <string name="titulo_movies">Peliculas</string>
     <string name="titulo_mapa">Ubicación</string>
     <string name="titulo_imagenes">Imagenes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
