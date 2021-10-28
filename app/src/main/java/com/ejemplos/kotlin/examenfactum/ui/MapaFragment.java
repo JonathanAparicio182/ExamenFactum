@@ -32,6 +32,7 @@ public class MapaFragment extends Fragment {
     GoogleMap mapa;
     DatabaseReference firebaseDatabase;                 //elemento con la instancia de la BD en Firebase
     Double latitud,lontigud;
+    String fecha;
     //variable con los marcadores a posicionar en el mapa
     ArrayList<Marker> realTimeMarkers = new ArrayList<>();
     //variable con las coordenadas de posición
@@ -54,6 +55,7 @@ public class MapaFragment extends Fragment {
                     //se obtienen todos los nodos de la BD
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                         MapsPojo mp = dataSnapshot.getValue(MapsPojo.class);
+                        fecha = mp.getFecha();
                         latitud = mp.getLatitud();
                         lontigud = mp.getLongitud();
                         coordenadas.add( new LatLng( latitud,lontigud ) );
@@ -61,6 +63,7 @@ public class MapaFragment extends Fragment {
                         MarkerOptions marcador = new MarkerOptions();
                         //y configura la posición y el ícono a mostrar
                         marcador.position( new LatLng( latitud,lontigud ) )
+                                .title( fecha )
                                 .icon( BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE) );
                         //dibuja el marcador en el mapa a la vez que almacena el marcador en el ArrayList
                         realTimeMarkers.add( mapa.addMarker( marcador ) );

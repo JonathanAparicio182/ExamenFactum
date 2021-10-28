@@ -22,6 +22,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,7 +67,7 @@ public class DashboardActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     tiemposeg++;
-                    Log.d( "DashboardActivity", "Ya pasaron " + tiemposeg + " segundos");
+                    //Log.d( "DashboardActivity", "Ya pasaron " + tiemposeg + " segundos");
                     if (tiemposeg%60 == 0)          //si ya paso 1 minuto
                     {
                         tiemposeg=0;            //reinicia los segundos
@@ -119,6 +121,7 @@ public class DashboardActivity extends AppCompatActivity {
                             Log.e("DashboardActivity" ,"Latitud: " + location.getLatitude() + "Longitud: " + location.getLongitude() );
                             //Mapea para tener la longitud y latitud dentro de un mismo elemento
                             Map<String,Object> latlng = new HashMap<>();        //se inicia vacío
+                            latlng.put( "fecha", obtenerFecha() );                  //se coloca la fecha en que se registro la ubicación
                             latlng.put( "latitud", location.getLatitude() );        //se coloca la latitud
                             latlng.put( "longitud", location.getLongitude() );      //se coloca la longitud
                             //crea un nuevo elemento dentro de Database
@@ -126,5 +129,13 @@ public class DashboardActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    //método para obtener la fecha actual
+    private String obtenerFecha(){
+        Calendar calendario = Calendar.getInstance();                   //crea una instancia del calendario
+        //formato que tendra la fecha
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss");
+        //regresa la hora con el formato adecuado
+        return formato.format(calendario.getTime());
     }
 }
