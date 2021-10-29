@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">ExamenFactum</string>
+
     <!--Etiquetas para mostrar los fragmentos-->
     <string name="titulo_movies">Peliculas</string>
     <string name="titulo_mapa">Ubicación</string>
     <string name="titulo_imagenes">Imagenes</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--Etiquetas para el gragmento de imagenes-->
+
+    <string name="titulo">Almacenar imagenes en la nube</string>
+    <string name="btnFoto">Tomar foto</string>
+    <string name="btnGaleria">Buscar en la galería</string>
+    <string name="btnGuardar">Guardar en la nube</string>
 </resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margen_sencillo">24dp</dimen>
+    <dimen name="margen_grande">30dp</dimen>
+    <dimen name="tam_recycler">250dp</dimen>
+</resources>

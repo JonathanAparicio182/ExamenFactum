@@ -11,4 +11,8 @@ public class Constantes {
     public static final int SOLICITUD_PERMISOS = 1000;
     //cantidad de minutos para actualizar la ubicación
     public static final int MINUTOS_ACTUALIZA = 4;
+    //variable para solicitar lanzar la cámara
+    public static final int LANZAR_CAMARA = 1001;
+    //variable para solicitar abrir la galería
+    public static final int LANZAR_GALERIA = 1002;
 }
