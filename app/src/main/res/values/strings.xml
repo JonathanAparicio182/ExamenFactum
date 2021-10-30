@@ -5,10 +5,14 @@
     <string name="titulo_movies">Peliculas</string>
     <string name="titulo_mapa">Ubicación</string>
     <string name="titulo_imagenes">Imagenes</string>
-    <!--Etiquetas para el gragmento de imagenes-->
 
+    <!--Etiquetas para el fragmento de imagenes-->
     <string name="titulo">Almacenar imagenes en la nube</string>
     <string name="btnFoto">Tomar foto</string>
     <string name="btnGaleria">Buscar en la galería</string>
-    <string name="btnGuardar">Guardar en la nube</string>
+    <string name="btnGuardar">Subir imagen</string>
+    <string name="noGuardar">Solo se pueden subir imagenes guardadas en el dispositivo</string>
+    <string name="subiendoImagen">Subiendo...</string>
+    <string name="imagenSubida">Imagen subida con exito</string>
+    <string name="seleccionaImagen">Debes seleccionar una imagen primero</string>
 </resources>

@@ -67,4 +67,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     //integración de database de Firebase
     implementation 'com.google.firebase:firebase-database'
+    //integración de Cloud Store de Firebase
+    implementation 'com.google.firebase:firebase-storage'
 }
