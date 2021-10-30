@@ -68,10 +68,6 @@
                     android:layout_marginBottom="19dp"
                     android:text="@string/btnGuardar" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_Imagenes"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
             </LinearLayout>
         </ScrollView>
 

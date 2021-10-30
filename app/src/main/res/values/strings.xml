@@ -12,7 +12,8 @@
     <string name="btnGaleria">Buscar en la galería</string>
     <string name="btnGuardar">Subir imagen</string>
     <string name="noGuardar">Solo se pueden subir imagenes guardadas en el dispositivo</string>
-    <string name="subiendoImagen">Subiendo...</string>
+    <string name="subiendoTitulo">Subiendo...</string>
+    <string name="subiendoMensaje">Por favor espera mientras se sube tu imagen a Firebase</string>
     <string name="imagenSubida">Imagen subida con exito</string>
     <string name="seleccionaImagen">Debes seleccionar una imagen primero</string>
 </resources>

@@ -1,12 +1,13 @@
 package com.ejemplos.kotlin.examenfactum.ui
 
-import android.app.Activity
 import android.app.Activity.RESULT_OK
+import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,6 @@ import com.ejemplos.kotlin.examenfactum.R
 import com.ejemplos.kotlin.examenfactum.common.Constantes
 import com.ejemplos.kotlin.examenfactum.databinding.FragmentImagenesBinding
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import java.io.ByteArrayOutputStream
 import java.util.*
 
@@ -61,14 +61,24 @@ class ImagenesFragment : Fragment() {
             imageUri!= null && selSave==1 -> {
                 //selecciona la ubicación donde se quiere guardar la imagen
                 val filePath = storage!!.reference!!.child("Fotos/imagen${imageUri!!.lastPathSegment}")
-                Toast.makeText(context,"${resources.getString(R.string.subiendoImagen)}",Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context,"${resources.getString(R.string.subiendoImagen)}",Toast.LENGTH_SHORT).show()
+                val progreso = ProgressDialog(context)
+                progreso.setTitle(resources.getString(R.string.subiendoTitulo))
+                progreso.setMessage(resources.getString(R.string.subiendoMensaje))
+                progreso.setCancelable(false)                   //no permite que el usuario quite el ProgressDialog
+                progreso.show()                                 //muestra el dialogo
                 //sube el archivo al storage
                 filePath?.putFile(imageUri!!)!!.addOnSuccessListener { recibido ->
-                    //al cargar la imagen manda un mensaje
+                    //al cargar la imagen oculta el ProgressDialog
+                    progreso.dismiss()
+                    //y manda un mensaje
                     Toast.makeText(context,"${resources.getString(R.string.imagenSubida)}",Toast.LENGTH_SHORT).show()
                     imageUri = null             //vacía el uri para que no se vuelva a subir la misma imagen
                     selSave = 0
-                    binding.ivPreview.setImageResource(R.drawable.ic_fotografia)
+                    binding.ivPreview.setImageResource(R.drawable.ic_fotografia)        //muestra la imagen vacía
+                }.addOnCompleteListener { completado ->                                 //al terminar de subir la imagen
+                    val ubicacion = completado.result.uploadSessionUri                  //obtiene la ubicación
+                    Log.i("ImagenesFragment","URL: ${ubicacion}")
                 }
             }
             //si se quiere subir una foto que no esta guardada en el dispositivo
@@ -78,12 +88,22 @@ class ImagenesFragment : Fragment() {
                 val baos = ByteArrayOutputStream()                  //variable donde se guardara la compresión
                 imageBitmap.compress(Bitmap.CompressFormat.JPEG,100,baos)   //comprime la imagen en JPG
                 val data = baos.toByteArray()                       //convierte la imagen en un arreglo de bytes
-                Toast.makeText(context,"${resources.getString(R.string.subiendoImagen)}",Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context,"${resources.getString(R.string.subiendoImagen)}",Toast.LENGTH_SHORT).show()
+                val progreso = ProgressDialog(context)
+                progreso.setTitle(resources.getString(R.string.subiendoTitulo))
+                progreso.setMessage(resources.getString(R.string.subiendoMensaje))
+                progreso.setCancelable(false)                   //no permite que el usuario quite el ProgressDialog
+                progreso.show()                                 //muestra el dialogo
                 filePath.putBytes(data).addOnSuccessListener { recibido ->
-                    //al cargar la imagen manda un mensaje
+                    //al cargar la imagen oculta el ProgressDialog
+                    progreso.dismiss()
+                    //manda un mensaje
                     Toast.makeText(context,"${resources.getString(R.string.imagenSubida)}",Toast.LENGTH_SHORT).show()
                     selSave = 0
                     binding.ivPreview.setImageResource(R.drawable.ic_fotografia)
+                }.addOnCompleteListener { completado ->
+                    val ubicacion = completado.result.uploadSessionUri                  //obtiene la ubicación
+                    Log.i("ImagenesFragment","URL: ${ubicacion}")
                 }
             }
             //si se presiona guardar pero no hay ninguna imagen seleccionada
